@@ -1,4 +1,4 @@
-# generator-estudo
+# Generator
 
 > Apenas um estudo de generators ES6
 
