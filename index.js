@@ -26,9 +26,8 @@ function * doIt(item) {
 }
 
 function * getCeps(lista) {
-    let results = yield lista.map(doIt);
-    return results;
-  }
+  return yield lista.map(doIt);
+}
 
 function run(lista) {
   return co(getCeps(lista));
@@ -37,10 +36,10 @@ function run(lista) {
 function render(results) {
   let ignore = ['success', 'cliente'];
   let h = _.chain(results)
-           .first()
-           .keys()
-           .remove(n => ignore.indexOf(n) === -1)
-           .value();
+    .first()
+    .keys()
+    .remove(n => ignore.indexOf(n) === -1)
+    .value();
   let tbl = new Table({
     head: h,
   });
