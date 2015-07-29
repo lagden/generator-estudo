@@ -34,7 +34,7 @@ function run(lista) {
 }
 
 function render(results) {
-  let ignore = ['success', 'cliente'];
+  let ignore = ['success', 'cliente', 'endere\u00E7o'];
   let h = _.chain(results)
     .first()
     .keys()
