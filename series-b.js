@@ -1,4 +1,4 @@
-/* Exemplo B
+/* Exemplo Serie B
  *
  * Nesse exemplo utilizei a biblioteca `co`, que executa um array de
  * promises em parelelo, mas é tranformado em execução serial pela

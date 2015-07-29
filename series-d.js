@@ -1,6 +1,6 @@
-/* Exemplo D
+/* Exemplo Serie D
  *
- * Mesmo que o Exemplo A, mas o ciclo não é interrompido se alguma
+ * Mesmo que o Exemplo Serie A, mas o ciclo não é interrompido se alguma
  * Promessa (Promise) for rejeitada (reject).
  *
  * O método `getAll` faz o tratamento!

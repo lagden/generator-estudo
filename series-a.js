@@ -1,4 +1,4 @@
-/* Exemplo A
+/* Exemplo Serie A
  *
  * Nesse exemplo utilizei o `Promise.all`, que executa um array de
  * promises em parelelo, mas é tranformado em execução serial pela
