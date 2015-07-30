@@ -16,20 +16,19 @@ I created some cases:
 - series-b.js
 - series-c.js
 - series-d.js
-
-and
-
 - parallel-a.js
 - parallel-b.js
 - parallel-c.js
 - parallel-d.js
+- basic.js
+- master.js
 
 To run the scripts above: `npm start script-name.js`
 
 *Example*
 
 ```
-npm start series-c.js`
+npm start basic.js`
 ```
 
 ## License
