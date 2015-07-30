@@ -25,10 +25,10 @@ I created some cases:
 
 To run the scripts above: `npm start script-name.js`
 
-*Example*
+**Example**
 
 ```
-npm start basic.js`
+npm start basic.js
 ```
 
 ## License
