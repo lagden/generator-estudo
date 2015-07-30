@@ -23,10 +23,10 @@ function fn(v) {
   return async(v);
 }
 
-function runSeries(lista, fn) {
+function run(lista, fn) {
   return Promise.all(lista.map(series(fn)));
 }
 
-runSeries(range, fn)
+run(range, fn)
   .then(console.log)
   .catch(console.log);

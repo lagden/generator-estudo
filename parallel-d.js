@@ -21,11 +21,11 @@ function fn(v) {
   return async(v).then(getAll).catch(getAll);
 }
 
-function runSeries(lista, fn) {
+function run(lista, fn) {
   let promises = lista.map(fn);
   return Promise.all(promises);
 }
 
-runSeries(range, fn)
+run(range, fn)
   .then(console.log)
   .catch(console.log);

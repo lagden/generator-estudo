@@ -26,12 +26,12 @@ function fn(v) {
   return async(v).then(getAll).catch(getAll);
 }
 
-function runSeries(lista, fn) {
+function run(lista, fn) {
   return co(function * (){
     return yield lista.map(series(fn));
   });
 }
 
-runSeries(range, fn)
+run(range, fn)
   .then(console.log)
   .catch(console.log);
