@@ -22,6 +22,7 @@ I created some cases:
 - parallel-d.js
 - basic.js
 - master.js
+- await.js `ES7`
 
 To run the scripts above: `npm start script-name.js`
 

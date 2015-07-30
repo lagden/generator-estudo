@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "babel-node"
+    "start": "babel-node --stage 1"
   },
   "author": "Thiago Lagden",
   "license": "ISC",
@@ -13,6 +13,7 @@
     "cli-table": "^0.3.1",
     "co": "^4.6.0",
     "co-series": "^0.1.0",
+    "deasync": "^0.1.0",
     "io-cep": "^0.3.3",
     "lodash": "^3.10.0"
   },
