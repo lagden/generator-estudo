@@ -10,19 +10,13 @@
 'use strict';
 
 import _ from 'lodash';
-import {async} from './lib/async';
-
-let range = _.range(1, 11);
-
-function fn(v) {
-  return async(v);
-}
+import {randAsync} from './lib/async';
+import {out} from './lib/out';
 
 function run(lista, fn) {
-  let promises = lista.map(fn);
-  return Promise.all(promises);
+	return Promise.all(lista.map(fn));
 }
 
-run(range, fn)
-  .then(console.log)
-  .catch(console.log);
+run(_.range(1, 11), randAsync)
+	.then(out)
+	.catch(out);

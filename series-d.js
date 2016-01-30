@@ -10,25 +10,26 @@
 
 import _ from 'lodash';
 import series from 'co-series';
-import {async} from './lib/async';
+import {randAsync} from './lib/async';
+import {out} from './lib/out';
 
-let range = _.range(1, 11);
-let total = range.length;
+const range = _.range(1, 11);
+const total = range.length;
 let cc = 0;
 
 function getAll(res) {
-  return res;
+	return res;
 }
 
-function fn(v) {
-  console.log(`${++cc} of ${total} - ${v}`);
-  return async(v).then(getAll).catch(getAll);
+function helper(v) {
+	console.log(`${++cc} of ${total} - ${v}`);
+	return randAsync(v).then(getAll).catch(getAll);
 }
 
 function run(lista, fn) {
-  return Promise.all(lista.map(series(fn)));
+	return Promise.all(lista.map(series(fn)));
 }
 
-run(range, fn)
-  .then(console.log)
-  .catch(console.log);
+run(range, helper)
+	.then(out)
+	.catch(out);

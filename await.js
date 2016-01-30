@@ -7,47 +7,46 @@
 
 import _ from 'lodash';
 import deasync from 'deasync';
-import {randAsync as promessa} from './lib/async';
+import {randAsync} from './lib/async';
+import {out} from './lib/out';
 
 const range = _.range(1, 5);
 const sleep = deasync((timeout, done) => {
 	setTimeout(done, timeout);
 });
 
-function fn(v) {
+function helper(v) {
 	console.log(v);
-	return promessa(v);
+	// add flag = false to avoid reject
+	return randAsync(v, false);
 }
 
-// Paralelo
+// Paralelo - Promise
 console.log('Executando em paralelo...');
-
-async function paralelo(fn, arr) {
-	try {
-		const p = await Promise.all(arr.map(fn));
-		console.log(p.join(', '));
-	} catch (err) {
-		console.log(err);
-	}
+async function paralelo(arr, fn) {
+	const p = await Promise.all(arr.map(fn));
+	console.log('Finalizado...');
+	return p;
 }
-paralelo(fn, range);
+paralelo(range, helper)
+	.then(out)
+	.catch(out);
 
 sleep(2000);
 console.log('---------------');
 
-// Série
+// Série - Try / Catch
 console.log('Executando em série...');
-
-async function serie(fn, arr) {
+async function serie(arr, fn) {
 	try {
 		const s = [];
 		for (const v of arr) {
 			s.push(await fn(v));
 		}
-		console.log(s.join(', '));
+		console.log('Finalizado...');
+		out(s);
 	} catch (err) {
-		console.log(err);
+		out(err);
 	}
 }
-
-serie(fn, range);
+serie(range, helper);

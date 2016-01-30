@@ -3,6 +3,7 @@
 'use strict';
 
 import {randAsync} from './lib/async';
+import {out} from './lib/out';
 
 function async(makeGenerator) {
 	return (...args) => {
@@ -35,14 +36,6 @@ async(function * (arr) {
 		console.log(v);
 	}
 	return ps;
-})([1, 2, 3, 4, 5]).then(data => {
-	console.log('-------------------------');
-	console.log('Exemplo A');
-	console.log(data.join(', '));
-	console.log('-------------------------');
-}).catch(err => {
-	console.log('-------------------------');
-	console.log('Exemplo A');
-	console.log(`Err: ${err}`);
-	console.log('-------------------------');
-});
+})([1, 2, 3, 4, 5])
+	.then(out)
+	.catch(out);

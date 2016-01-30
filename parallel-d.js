@@ -9,23 +9,21 @@
 'use strict';
 
 import _ from 'lodash';
-import {async} from './lib/async';
-
-let range = _.range(1, 11);
+import {randAsync} from './lib/async';
+import {out} from './lib/out';
 
 function getAll(res) {
-  return res;
+	return res;
 }
 
-function fn(v) {
-  return async(v).then(getAll).catch(getAll);
+function helper(v) {
+	return randAsync(v).then(getAll).catch(getAll);
 }
 
 function run(lista, fn) {
-  let promises = lista.map(fn);
-  return Promise.all(promises);
+	return Promise.all(lista.map(fn));
 }
 
-run(range, fn)
-  .then(console.log)
-  .catch(console.log);
+run(_.range(1, 11), helper)
+	.then(out)
+	.catch(out);

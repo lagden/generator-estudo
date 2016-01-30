@@ -11,21 +11,15 @@
 
 import _ from 'lodash';
 import co from 'co';
-import {async} from './lib/async';
-
-let range = _.range(1, 11);
-
-function fn(v) {
-  return async(v);
-}
+import {randAsync} from './lib/async';
+import {out} from './lib/out';
 
 function run(lista, fn) {
-  return co(function * (){
-    let promises = lista.map(fn);
-    return yield promises;
-  });
+	return co(function * () {
+		return yield lista.map(fn);
+	});
 }
 
-run(range, fn)
-  .then(console.log)
-  .catch(console.log);
+run(_.range(1, 11), randAsync)
+	.then(out)
+	.catch(out);

@@ -1,4 +1,4 @@
-# Generator and Promise
+# Generator, Promise, Series, Parallel, Async and Await
 
 > Only one study
 
@@ -20,9 +20,9 @@ I created some cases:
 - parallel-b.js
 - parallel-c.js
 - parallel-d.js
-- basic.js
-- master.js
-- await.js `ES7`
+- basic.js `Generator basic usage`
+- master.js `Generator without lib and running in series`
+- await.js `ES7 - series and parallel`
 
 To run the scripts above: `npm start script-name.js`
 
