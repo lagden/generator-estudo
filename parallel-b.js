@@ -7,19 +7,19 @@
  * o ciclo é interrompido e a captura (catch) é disparada.
  */
 
-'use strict';
+'use strict'
 
-import _ from 'lodash';
-import co from 'co';
-import {randAsync} from './lib/async';
-import {out} from './lib/out';
+import _ from 'lodash'
+import co from 'co'
+import randAsync from './lib/async'
+import out from './lib/out'
 
 function run(lista, fn) {
 	return co(function * () {
-		return yield lista.map(fn);
-	});
+		return yield lista.map(fn)
+	})
 }
 
 run(_.range(1, 11), randAsync)
 	.then(out)
-	.catch(out);
+	.catch(out)

@@ -6,30 +6,30 @@
  * O método `getAll` faz o tratamento!
  */
 
-'use strict';
+'use strict'
 
-import _ from 'lodash';
-import series from 'co-series';
-import {randAsync} from './lib/async';
-import {out} from './lib/out';
+import _ from 'lodash'
+import series from 'co-series'
+import randAsync from './lib/async'
+import out from './lib/out'
 
-const range = _.range(1, 11);
-const total = range.length;
-let cc = 0;
+const range = _.range(1, 11)
+const total = range.length
+let cc = 0
 
 function getAll(res) {
-	return res;
+	return res
 }
 
 function helper(v) {
-	console.log(`${++cc} of ${total} - ${v}`);
-	return randAsync(v).then(getAll).catch(getAll);
+	console.log(`${++cc} of ${total} - ${v}`)
+	return randAsync(v).then(getAll).catch(getAll)
 }
 
 function run(lista, fn) {
-	return Promise.all(lista.map(series(fn)));
+	return Promise.all(lista.map(series(fn)))
 }
 
 run(range, helper)
 	.then(out)
-	.catch(out);
+	.catch(out)

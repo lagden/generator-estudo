@@ -1,41 +1,47 @@
 // Generator
 
-'use strict';
+'use strict'
 
-import {randAsync} from './lib/async';
-import {out} from './lib/out';
+import randAsync from './lib/async'
+import out from './lib/out'
 
-function async(makeGenerator) {
+function getAll(res) {
+	return res
+}
+
+function serie(makeGenerator) {
 	return (...args) => {
-		const generator = makeGenerator.apply(this, args);
+		const generator = makeGenerator(...args)
 
 		function handle(result) {
 			if (result.done) {
-				return Promise.resolve(result.value);
+				return Promise.resolve(result.value)
 			}
 
 			return Promise
 				.resolve(result.value)
 				.then(res => handle(generator.next(res)))
-				.catch(err => handle(generator.throw(err)));
+				.catch(err => handle(generator.throw(err)))
 		}
 
 		try {
-			return handle(generator.next());
+			return handle(generator.next())
 		} catch (err) {
-			return Promise.reject(err);
+			return Promise.reject(err)
 		}
-	};
+	}
 }
 
-console.log('Executando em série...');
-async(function * (arr) {
-	const ps = [];
+function * gen(arr) {
+	const ps = []
 	for (const v of arr) {
-		ps.push(yield randAsync(v));
-		console.log(v);
+		ps.push(yield randAsync(v).then(getAll).catch(getAll))
+		console.log(v)
 	}
-	return ps;
-})([1, 2, 3, 4, 5])
+	return ps
+}
+
+console.log('Executando em série...')
+serie(gen)([1, 2, 3, 4, 5])
 	.then(out)
-	.catch(out);
+	.catch(out)

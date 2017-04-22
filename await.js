@@ -3,50 +3,50 @@
  * ES7 features
  */
 
-'use strict';
+'use strict'
 
-import _ from 'lodash';
-import deasync from 'deasync';
-import {randAsync} from './lib/async';
-import {out} from './lib/out';
+import pMapSeries from 'p-map-series'
+import _ from 'lodash'
+import deasync from 'deasync'
+import randAsync from './lib/async'
+import out from './lib/out'
 
-const range = _.range(1, 5);
+const range = _.range(1, 10)
 const sleep = deasync((timeout, done) => {
-	setTimeout(done, timeout);
-});
+	setTimeout(done, timeout)
+})
+
+function getAll(res) {
+	return res
+}
 
 function helper(v) {
-	console.log(v);
+	console.log(v)
 	// add flag = false to avoid reject
-	return randAsync(v, false);
+	// return randAsync(v, false)
+	return randAsync(v).then(getAll).catch(getAll)
 }
 
 // Paralelo - Promise
-console.log('Executando em paralelo...');
+console.log('Executando em paralelo...')
 async function paralelo(arr, fn) {
-	const p = await Promise.all(arr.map(fn));
-	console.log('Finalizado...');
-	return p;
+	const p = await Promise.all(arr.map(fn))
+	console.log('Finalizado...')
+	return p
 }
 paralelo(range, helper)
 	.then(out)
-	.catch(out);
+	.catch(out)
 
-sleep(2000);
-console.log('---------------');
+sleep(2000)
+console.log('---------------')
 
-// Série - Try / Catch
-console.log('Executando em série...');
+// Série
+console.log('Executando em série...')
 async function serie(arr, fn) {
-	try {
-		const s = [];
-		for (const v of arr) {
-			s.push(await fn(v));
-		}
-		console.log('Finalizado...');
-		out(s);
-	} catch (err) {
-		out(err);
-	}
+	const s = await pMapSeries(arr, v => fn(v))
+	console.log('Finalizado...')
+	return s
 }
-serie(range, helper);
+serie(range, helper)
+	.then(out)

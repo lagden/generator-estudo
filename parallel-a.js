@@ -7,16 +7,16 @@
  * o ciclo é interrompido e a captura (catch) é disparado.
  */
 
-'use strict';
+'use strict'
 
-import _ from 'lodash';
-import {randAsync} from './lib/async';
-import {out} from './lib/out';
+import _ from 'lodash'
+import randAsync from './lib/async'
+import out from './lib/out'
 
 function run(lista, fn) {
-	return Promise.all(lista.map(fn));
+	return Promise.all(lista.map(fn))
 }
 
 run(_.range(1, 11), randAsync)
 	.then(out)
-	.catch(out);
+	.catch(out)

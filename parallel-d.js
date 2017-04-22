@@ -6,24 +6,24 @@
  * O método `getAll` faz o tratamento!
  */
 
-'use strict';
+'use strict'
 
-import _ from 'lodash';
-import {randAsync} from './lib/async';
-import {out} from './lib/out';
+import _ from 'lodash'
+import randAsync from './lib/async'
+import out from './lib/out'
 
 function getAll(res) {
-	return res;
+	return res
 }
 
 function helper(v) {
-	return randAsync(v).then(getAll).catch(getAll);
+	return randAsync(v).then(getAll).catch(getAll)
 }
 
 function run(lista, fn) {
-	return Promise.all(lista.map(fn));
+	return Promise.all(lista.map(fn))
 }
 
 run(_.range(1, 11), helper)
 	.then(out)
-	.catch(out);
+	.catch(out)
